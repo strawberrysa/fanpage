@@ -1,16 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { MessageWrap } from "../components/MessageWrap";
 import { Header } from "../components/Stylecomponents";
 import Button from "../components/Button";
+import { MessageContextData } from "../context/Context";
 
-function Detail({ message, setMessage }) {
+function Detail() {
+  const { message, setMessage } = useContext(MessageContextData);
   console.log(message);
   const { letterid } = useParams();
   const data = message.find((msg) => {
     return msg.id === letterid;
   });
-  console.log(data);
 
   const navi = useNavigate();
 

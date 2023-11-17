@@ -3,22 +3,17 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Detail from "../pages/Detail";
 import App from "../App";
 import { useState } from "react";
+import Context from "../context/Context";
 
 function Router() {
-  const [message, setMessage] = useState([]);
   return (
     <BrowserRouter>
-      <Routes>
-        //들어가는 페이지들
-        <Route
-          path="/"
-          element={<App message={message} setMessage={setMessage} />}
-        />
-        <Route
-          path="/detail/:letterid"
-          element={<Detail message={message} setMessage={setMessage} />}
-        />
-      </Routes>
+      <Context>
+        <Routes>
+          <Route path="/" element={<App />} />
+          <Route path="/detail/:letterid" element={<Detail />} />
+        </Routes>
+      </Context>
     </BrowserRouter>
   );
 }

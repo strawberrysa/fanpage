@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import uuid from "react-uuid";
 import {
   Contents,
@@ -7,11 +7,13 @@ import {
   SendButton,
   SelectBox,
 } from "./Stylecomponents";
+import { MessageContextData } from "../context/Context";
 
-function InputContainer({ message, setMessage }) {
+function InputContainer() {
   const [name, setName] = useState("");
   const [contents, setContents] = useState("");
   const [sendWho, setSendWho] = useState("민지");
+  const { message, setMessage } = useContext(MessageContextData);
   //const now = new Date();
   // const formattedTime = now.toLocaleString();
 

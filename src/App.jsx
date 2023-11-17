@@ -1,15 +1,16 @@
 import { createGlobalStyle } from "styled-components";
 import styled from "styled-components";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import Message from "./components/Message";
 import Background from "./components/Background";
 import InputContainer from "./components/InputContainer";
 import { CardWrap } from "./components/Stylecomponents";
 import Footer from "./components/Footer";
+import { MessageContextData } from "./context/Context";
 
-function App({ message, setMessage }) {
+function App() {
   const [curmember, setCurmember] = useState("모두🐰");
-  console.log(message);
+  const { message, setMessage } = useContext(MessageContextData);
 
   return (
     <>
@@ -17,13 +18,9 @@ function App({ message, setMessage }) {
         <GlobalStyle />
         <Background setCurmember={setCurmember} />
         <CardWrap>
-          <InputContainer message={message} setMessage={setMessage} />
+          <InputContainer />
         </CardWrap>
-        <Message
-          message={message}
-          curmember={curmember}
-          setMessage={setMessage}
-        />
+        <Message curmember={curmember} />
       </Wrap>
       <Footer />
     </>

@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { MessageWrap } from "./MessageWrap";
 import { Img } from "./Stylecomponents";
+import { MessageContextData } from "../context/Context";
 
-function Message({ message, curmember, setMessage }) {
+function Message({ curmember }) {
+  const { message } = useContext(MessageContextData);
   //curmember가 "모두"일 경우에는 모든 메시지를 그대로 사용하고,
   //그렇지 않을 경우에는 해당하는 조건에 맞는 메시지만 필터링
 
@@ -11,8 +13,6 @@ function Message({ message, curmember, setMessage }) {
     curmember === "모두🐰"
       ? message
       : message.filter((msg) => msg.sendWho === curmember);
-  console.log(filtered);
-  console.log(curmember);
 
   const navigate = useNavigate();
 
